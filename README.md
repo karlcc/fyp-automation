@@ -32,3 +32,8 @@ Figure 5. Web UI
 ## License
 
 [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.html)
+
+## Acknowledgements
+
+ - [Arduino](https://www.arduino.cc/en/about)
+ - [openHAB runtime](https://github.com/openhab)
