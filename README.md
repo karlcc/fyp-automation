@@ -10,19 +10,19 @@ Currently, radio frequency is used as a way for wireless communication and it ha
 
 ## Screenshots
 Figure 1. IR Wireless Patient Tag Integration
-[![figure1](poster/figure1.PNG "")
+![figure1](poster/figure1.PNG "")
 
 Figure 2. Design Diagram
-[![figure2](poster/figure2.PNG "")
+![figure2](poster/figure2.PNG "")
 
 Figure 3. Software Workflow
-[![figure3](poster/figure3.PNG "")
+![figure3](poster/figure3.PNG "")
 
 Figure 4. Hardware Arduino Setup
-[![figure4](poster/figure4.PNG "")
+![figure4](poster/figure4.PNG "")
 
 Figure 5. Web UI
-[![figure5](poster/figure5.PNG "")
+![figure5](poster/figure5.PNG "")
 
 ## License
 
