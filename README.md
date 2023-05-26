@@ -9,15 +9,20 @@ Currently, radio frequency is used as a way for wireless communication and it ha
 - Software coding for analyzing and displaying received sensor data
 
 ## Screenshots
-[![figure1](poster/figure1.PNG "Figure 1. IR Wireless Patient Tag Integration")
+Figure 1. IR Wireless Patient Tag Integration
+[![figure1](poster/figure1.PNG "")
+
 Figure 2. Design Diagram
-<img src="poster/figure2.PNG"/>
+[![figure2](poster/figure2.PNG "")
+
 Figure 3. Software Workflow
-<img src="poster/figure3.PNG"/>
+[![figure3](poster/figure3.PNG "")
+
 Figure 4. Hardware Arduino Setup
-<img src="poster/figure4.PNG"/>
+[![figure4](poster/figure4.PNG "")
+
 Figure 5. Web UI
-<img src="poster/figure5.PNG"/>
+[![figure5](poster/figure5.PNG "")
 
 ## License
 
