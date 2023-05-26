@@ -1,0 +1,40 @@
+sitemap main label="Health Monitor Station"
+{
+	Frame {
+		Text item=Date
+		Text item=Weather_Temperature{
+			Frame {
+				Text item=Weather_Temp_Max
+				Text item=Weather_Temp_Min
+			}
+			Frame {
+				Chart item=Weather_Chart period=h refresh=10000 
+			}
+		}
+	}
+
+	Frame label="Demo 1"{
+		Group item=gRMA label="Room A" icon="groundfloor" 
+		Group item=gRMB label="Room B" icon="firstfloor"
+		Group item=Alarm// icon="siren"
+		Text label="Chart Demo" icon="chartline" { 
+			Frame label="Patient 1" {
+				Text item=Temperature_RMA_P1
+				Text item=Heartrate_RMA_P1
+				Text item=HLAlarm_RMA_P1
+				Setpoint item=HSPA_RMA_P1 minValue=30 maxValue=50 step=0.5
+				//Webview url="http://localhost:8080/ehr/demo.png" height=8
+				//Webview url="../ehr/demo.png" height=8
+			}	
+			Frame {
+				Chart item=Temperature_RMA_P1 period=h refresh=5000			
+			}
+	}
+	}	
+	Frame label="Demo 2"{
+		Text label="eHR Demo" icon="ha" { 
+			Webview url="../ehr/demo.xml" height=8
+			}
+			}
+}
+

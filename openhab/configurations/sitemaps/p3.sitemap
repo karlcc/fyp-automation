@@ -1,0 +1,38 @@
+sitemap main label="Patient 3"
+{
+	Frame {
+		Text item=Date
+		Text item=Weather_Temperature{
+			Frame {
+				Text item=Weather_Temp_Max
+				Text item=Weather_Temp_Min
+			}
+			Frame {
+				Chart item=Weather_Chart period=h refresh=10000 
+			}
+		}
+	}
+
+
+			Frame label="Patient 1" {
+				//Group item=RMA_P1 icon="groundfloor"
+				Text item=Temperature_RMB_P3
+				Text item=Heartrate_RMB_P3
+				Text item=HLAlarm_RMB_P3
+				Setpoint item=HSPA_RMB_P3 minValue=30 maxValue=50 step=0.5
+				//Webview url="http://localhost:8080/ehr/demo.png" height=8
+				//Webview url="../ehr/demo.png" height=8
+			}	
+			Frame {
+				Chart item=Temperature_RMB_P3 period=h refresh=5000
+				//Chart item=Heartrate_RMA_P1_RAW period=h refresh=1000
+				
+			}
+
+	Frame label="eHR"{
+		Text label="eHR Demo" icon="ha" { 
+			Webview url="../ehr/p3.xml" height=8
+			}
+			}
+}
+

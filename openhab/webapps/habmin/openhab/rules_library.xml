@@ -1,0 +1,266 @@
+<rules>
+    <rule>
+        <name>MaximumToday</name>
+        <label>Maximum item value since midnight</label>
+        <itemtype>NumberItem</itemtype>
+        <type>DerivedItem</type>
+        <description>Keep track of maximum item value since midnight</description>
+        <import>org.openhab.core.library.types.*</import>
+        <import>org.openhab.core.persistence.*</import>
+        <import>org.openhab.model.script.actions.*</import>
+        <trigger>Item %%ItemName%% changed or</trigger>
+        <trigger>Time cron "0 0 0 * * ?" or</trigger>
+        <trigger>System started</trigger>
+        <action>postUpdate(%%DerivedItem%%, %%ItemName%%.maximumSince(now.toDateMidnight).state)</action>
+        <variable>
+            <name>DerivedItem</name>
+            <type>Number</type>
+            <label>New Item Name</label>
+            <value>%%ItemName%%_MaxToday</value>
+            <description>The name of the new item.</description>
+            <scope>Setup</scope>
+        </variable>
+    </rule>
+
+    <rule>
+        <name>MinimumToday</name>
+        <label>Minimum item value since midnight</label>
+        <type>DerivedItem</type>
+        <itemtype>NumberItem</itemtype>
+        <description>Keep track of minimum item value since midnight</description>
+        <import>org.openhab.core.library.types.*</import>
+        <import>org.openhab.core.persistence.*</import>
+        <import>org.openhab.model.script.actions.*</import>
+        <trigger>Item %%ItemName%% changed or</trigger>
+        <trigger>Time cron "0 0 0 * * ?" or</trigger>
+        <trigger>System started</trigger>
+        <action>postUpdate(%%DerivedItem%%, %%ItemName%%.minimumSince(now.toDateMidnight).state)</action>
+        <variable>
+            <name>DerivedItem</name>
+            <type>Number</type>
+            <label>New Item Name</label>
+            <value>%%ItemName%%_MinToday</value>
+            <description>The name of the new item.</description>
+            <scope>Setup</scope>
+        </variable>
+    </rule>
+
+    <rule>
+        <name>ChangeToday</name>
+        <label>Change since midnight</label>
+        <type>DerivedItem</type>
+        <itemtype>NumberItem</itemtype>
+        <description></description>
+        <import>org.openhab.core.library.types.*</import>
+        <import>org.openhab.core.persistence.*</import>
+        <import>org.openhab.model.script.actions.*</import>
+        <trigger>Item %%ItemName%% changed or</trigger>
+        <trigger>Time cron "0 * * * * ?" or</trigger>
+        <trigger>System started</trigger>
+        <action>var Number valNow = %%ItemName%%.state as DecimalType</action>
+        <action>var Number valThen = %%ItemName%%.minimumSince(now.toDateMidnight(24)).state as DecimalType</action>
+        <action>var Number valDif = valNow - valThen</action>
+        <action>postUpdate(%%DerivedItem%%, valDif)</action>
+        <variable>
+            <name>DerivedItem</name>
+            <type>Number</type>
+            <label>New Item Name</label>
+            <value>%%ItemName%%_ChangeToday</value>
+            <description>The name of the new item.</description>
+            <scope>Setup</scope>
+        </variable>
+    </rule>
+
+    <rule>
+        <name>Change1Hour</name>
+        <label>Change in past 1 hour</label>
+        <type>DerivedItem</type>
+        <itemtype>NumberItem</itemtype>
+        <description></description>
+        <import>org.openhab.core.library.types.*</import>
+        <import>org.openhab.core.persistence.*</import>
+        <import>org.openhab.model.script.actions.*</import>
+        <trigger>Item %%ItemName%% changed or</trigger>
+        <trigger>Time cron "0 * * * * ?" or</trigger>
+        <trigger>System started</trigger>
+        <action>var Number valNow = %%ItemName%%.state as DecimalType</action>
+        <action>var Number valThen = %%ItemName%%.minimumSince(now.minusHours(1)).state as DecimalType</action>
+        <action>var Number valDif = valNow - valThen</action>
+        <action>postUpdate(%%DerivedItem%%, valDif)</action>
+        <variable>
+            <name>DerivedItem</name>
+            <type>Number</type>
+            <label>New Item Name</label>
+            <value>%%ItemName%%_Change1Hour</value>
+            <description>The name of the new item.</description>
+            <scope>Setup</scope>
+        </variable>
+    </rule>
+
+    <rule>
+        <name>Change6Hour</name>
+        <label>Change in past 6 hours</label>
+        <type>DerivedItem</type>
+        <itemtype>NumberItem</itemtype>
+        <description></description>
+        <import>org.openhab.core.library.types.*</import>
+        <import>org.openhab.core.persistence.*</import>
+        <import>org.openhab.model.script.actions.*</import>
+        <trigger>Item %%ItemName%% changed or</trigger>
+        <trigger>Time cron "0 * * * * ?" or</trigger>
+        <trigger>System started</trigger>
+        <action>var Number valNow = %%ItemName%%.state as DecimalType</action>
+        <action>var Number valThen = %%ItemName%%.minimumSince(now.minusHours(6)).state as DecimalType</action>
+        <action>var Number valDif = valNow - valThen</action>
+        <action>postUpdate(%%DerivedItem%%, valDif)</action>
+        <variable>
+            <name>DerivedItem</name>
+            <type>Number</type>
+            <label>New Item Name</label>
+            <value>%%ItemName%%_Change6Hour</value>
+            <description>The name of the new item.</description>
+            <scope>Setup</scope>
+        </variable>
+    </rule>
+
+    <rule>
+        <name>Change24Hour</name>
+        <label>Change in past 24 hours</label>
+        <type>DerivedItem</type>
+        <itemtype>NumberItem</itemtype>
+        <description></description>
+        <import>org.openhab.core.library.types.*</import>
+        <import>org.openhab.core.persistence.*</import>
+        <import>org.openhab.model.script.actions.*</import>
+        <trigger>Item %%ItemName%% changed or</trigger>
+        <trigger>Time cron "0 * * * * ?" or</trigger>
+        <trigger>System started</trigger>
+        <action>var Number valNow = %%ItemName%%.state as DecimalType</action>
+        <action>var Number valThen = %%ItemName%%.minimumSince(now.minusHours(24)).state as DecimalType</action>
+        <action>var Number valDif = valNow - valThen</action>
+        <action>postUpdate(%%DerivedItem%%, valDif)</action>
+        <variable>
+            <name>DerivedItem</name>
+            <type>Number</type>
+            <label>New Item Name</label>
+            <value>%%ItemName%%_Change24Hour</value>
+            <description>The name of the new item.</description>
+            <scope>Setup</scope>
+        </variable>
+    </rule>
+
+    <rule>
+        <name>HistoryMax1Hour</name>
+        <label>Maximum item value - updated every 1 hour</label>
+        <type>DerivedItem</type>
+        <itemtype>NumberItem</itemtype>
+        <description>Maximum in 1 hour period - used for historic logging</description>
+        <import>org.openhab.core.library.types.*</import>
+        <import>org.openhab.core.persistence.*</import>
+        <import>org.openhab.model.script.actions.*</import>
+        <trigger>Time cron "0 0 * * * ?"</trigger>
+        <action>postUpdate(%%DerivedItem%%, %%ItemName%%.maximumSince(now.minusHours(1)).state)</action>
+        <variable>
+            <name>DerivedItem</name>
+            <type>Number</type>
+            <label>New Item Name</label>
+            <value>%%ItemName%%_HistoryMax1Hour</value>
+            <description>The name of the new item.</description>
+            <scope>Setup</scope>
+        </variable>
+    </rule>
+
+    <rule>
+        <name>HistoryMin1Hour</name>
+        <label>Minimum item value - updated every 1 hour</label>
+        <type>DerivedItem</type>
+        <itemtype>NumberItem</itemtype>
+        <description>Minimum in 1 hour period - used for historic logging</description>
+        <import>org.openhab.core.library.types.*</import>
+        <import>org.openhab.core.persistence.*</import>
+        <import>org.openhab.model.script.actions.*</import>
+        <trigger>Time cron "0 0 * * * ?"</trigger>
+        <action>postUpdate(%%DerivedItem%%, %%ItemName%%.minimumSince(now.minusHours(1)).state)</action>
+        <variable>
+            <name>DerivedItem</name>
+            <type>Number</type>
+            <label>New Item Name</label>
+            <value>%%ItemName%%_HistoryMin1Hour</value>
+            <description>The name of the new item.</description>
+            <scope>Setup</scope>
+        </variable>
+    </rule>
+
+    <rule>
+        <name>LastUpdated</name>
+        <label>Records last update time</label>
+        <type>DerivedItem</type>
+        <description>Creates an item that stores the last update time of this item</description>
+        <import>org.openhab.core.library.types.*</import>
+        <import>org.openhab.core.persistence.*</import>
+        <import>org.openhab.model.script.actions.*</import>
+        <trigger>Item %%ItemName%% received update</trigger>
+        <action>postUpdate(%%DerivedItem%%, new DateTimeType())</action>
+        <variable>
+            <name>DerivedItem</name>
+            <type>DateTimeItem</type>
+            <label>New Item Name</label>
+            <value>%%ItemName%%_LastUpdate</value>
+            <description>The name of the new item.</description>
+            <scope>Setup</scope>
+        </variable>
+    </rule>
+
+    <rule>
+        <name>LastChanged</name>
+        <label>Records last change time</label>
+        <type>DerivedItem</type>
+        <description>Creates an item that stores the last change time of this item</description>
+        <import>org.openhab.core.library.types.*</import>
+        <import>org.openhab.core.persistence.*</import>
+        <import>org.openhab.model.script.actions.*</import>
+        <trigger>Item %%ItemName%% changed</trigger>
+        <action>postUpdate(%%DerivedItem%%, new DateTimeType())</action>
+        <variable>
+            <name>DerivedItem</name>
+            <type>DateTimeItem</type>
+            <label>New Item Name</label>
+            <value>%%ItemName%%_LastChange</value>
+            <description>The name of the new item.</description>
+            <scope>Setup</scope>
+        </variable>
+    </rule>
+
+    <rule>
+        <name>PowerConsumptionNow</name>
+        <label>Calculate current power consumption</label>
+        <type>DerivedItem</type>
+        <itemtype>SwitchItem</itemtype>
+        <itemtype>DimmerItem</itemtype>
+        <description>Calculates the power consumed by the item given a user specified maximum power</description>
+        <import>org.openhab.core.library.types.*</import>
+        <import>org.openhab.model.script.actions.*</import>
+        <trigger>Item %%ItemName%% changed</trigger>
+        <action>var Number valState = %%ItemName%%.state as DecimalType</action>
+        <action>var Number valWatts = valState * %%UserWatts%% / 100</action>
+        <action>postUpdate(%%DerivedItem%%, valWatts)</action>
+        <variable>
+            <name>DerivedItem</name>
+            <label>New Item Name</label>
+            <type>Number</type>
+            <value>%%ItemName%%_Watts</value>
+            <description>The name of the new item.</description>
+            <scope>Setup</scope>
+        </variable>
+        <variable>
+            <name>UserWatts</name>
+            <type>Number</type>
+            <label>User defined Watts</label>
+            <value>0</value>
+            <description>Maximum power the item consumes when ON</description>
+            <scope>Item</scope>
+        </variable>
+    </rule>
+
+</rules>
+

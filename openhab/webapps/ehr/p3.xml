@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- Edited by XMLSpy� -->
+<?xml-stylesheet type="text/xsl" href="demo.xsl"?>
+<ehr>
+	<patient>
+		<name>Patient, C</name>
+		<age>24</age>
+		<description>Bad health</description>
+	</patient>
+</ehr>

@@ -1,0 +1,87 @@
+Group All
+Group gRMA 		(All)
+Group gRMB 		(All)
+Group Weather 	(All)
+Group Status 	(All)
+Group HSPA 	(All)
+
+Group RMA_P1 	"Patient 1" 		<boy0> 	(gRMA)
+Group RMA_P2 	"Patient 2" 		<boy0> 	(gRMA)
+Group RMB_P3 	"Patient 3" 		<boy0> 	(gRMB)
+
+
+/* active groups */
+Group:Contact:OR(CLOSED, OPEN) 		Alarm 		"No. of Active Alarms [(%d)]"	<siren>				(All)
+Group:Number:AVG 				Temperature	"Avg. Room Temperature [%.1f °C]" 	<temperature>	(Status)
+//Group:Contact:OR(OPEN, CLOSED) 	Windows 	"Open windows [(%d)]"				<contact>		(All)
+Group:Number:AVG 				Heartrate	"Avg. Room Temperature [%.1f °C]" 	<temperature>	(Status)
+
+
+/* Body Temperatures */
+Number Temperature_RMA_P1 	"Body Temperature [%.1f °C]"	<temperature>	(Temperature, RMA_P1) {http="<[tag1st:1000:REGEX(.*\"id\":1,\"a0\":([0-9]*).*)]"}
+Number Temperature_RMA_P2 	"Body Temperature [%.1f °C]"	<temperature>	(Temperature, RMA_P2) {http="<[tag1st:1000:REGEX(.*\"id\":2,\"a0\":([0-9]*).*)]"}
+Number Temperature_RMB_P3 	"Body Temperature [%.1f °C]"	<temperature>	(Temperature, RMB_P3) {http="<[tag1st:1000:REGEX(.*\"a0\":([0-9]*).*)]"}
+
+/* Heart rate */
+Number Heartrate_RMA_P1 	"Heart rate [%.1f BPM]"	<beatheart>	(Heartrate, RMA_P1) {http="<[tag1st:1000:REGEX(.*\"id\":1,.*\"a1\":([0-9]*).*)]"}
+Number Heartrate_RMA_P2 	"Heart rate [%.1f BPM]"	<beatheart>	(Heartrate, RMA_P2) {http="<[tag1st:1000:REGEX(.*\"id\":2,.*\"a1\":([0-9]*).*)]"}
+Number Heartrate_RMB_P3 	"Heart rate [%.1f BPM]"	<beatheart>	(Heartrate, RMB_P3) {http="<[tag1st:1000:REGEX(.*\"a1\":([0-9]*).*)]"}
+//Number Heartrate_RMA_P1_RAW 	"Raw data [%.1f ]"	<beatheart>	(Heartrate, RMA_P1) {http="<[tag1st:1000:REGEX(.*\"b1\":([0-9]*).*)]"}
+
+/* Alarm */
+Contact HLAlarm_RMA_P1 	"Patient 1 Alarm [MAP(en.map):%s]"	<hot>	 	(RMA_P1, Alarm) 
+Contact HLAlarm_RMA_P2 	"Patient 2 Alarm [MAP(en.map):%s]"	<contact> 		(RMA_P2, Alarm)
+Contact HLAlarm_RMB_P3 	"Patient 3 Alarm [MAP(en.map):%s]"	<contact> 		(RMB_P3, Alarm)
+
+/* Text contact */
+//Contact Window_RMA_P1 	"Contact 1 [MAP(en.map):%s]"		(RMA_P1, Windows) {http="<[http://192.168.1.200/buzstatus:5000:REGEX((.*?))]"}
+//Contact Window_RMA_P2 		"Contact 2 [MAP(en.map):%s]"			(RMA_P2, Windows)
+//Contact Window_RMB_P1 		"Contact 3 [MAP(en.map):%s]"		(RMB_P1, Windows)
+
+Number High_Setpoint		"High Limit [%.1f °C]" <temperature>
+
+Number HSPA_RMA_P1		"High Limit [%.1f °C]" <temperature> (RMA_P1, HSPA)
+Number HSPA_RMA_P2		"High Limit [%.1f °C]" <temperature> (RMA_P2, HSPA)
+Number HSPA_RMB_P3		"High Limit [%.1f °C]" <temperature> (RMB_P3, HSPA)
+
+//Group Body_Chart			"Chart"										(gRMA)
+//Number Body_Temperature 		"Outside Temperature [%.1f °C]"	<temperature> (Body_Chart) 
+//Number Body_Temp_Max 		"Todays Maximum [%.1f °C]"	<temperature> (Body_Chart)
+//Number Body_Temp_Min 		"Todays Minimum [%.1f °C]"	<temperature> (Body_Chart)
+
+/* Lights */
+
+
+/* Heating */
+
+
+/* Rollershutters */
+
+
+/* Indoor Temperatures */
+
+
+/* Windows */
+
+
+Group Weather_Chart													(Weather)
+Number Weather_Temperature 		"Outside Temperature [%.1f °C]"	<temperature> (Weather_Chart) { http="<[http://weather.yahooapis.com/forecastrss?w=2165352&u=c:60000:XSLT(yahoo_weather_temperature.xsl)]" }
+Number Weather_Temp_Max 		"Todays Maximum [%.1f °C]"	<temperature> (Weather_Chart)
+Number Weather_Temp_Min 		"Todays Minimum [%.1f °C]"	<temperature> (Weather_Chart)
+
+/* NTP binding demo item */
+DateTime		Date			"Date [%1$tA, %1$td.%1$tm.%1$tY]"	<calendar>	{ ntp="Asia/Hong_Kong" }
+
+/* Demo items */
+Switch DemoSwitch				"Switch"
+Dimmer DimmedLight				"Dimmer [%d %%]"		<slider>
+Color  RGBLight					"RGB Light"				<slider>
+Rollershutter DemoShutter	 	"Roller Shutter"
+Dimmer DemoBlinds			 	"Blinds [%d %%]"		<rollershutter>
+Number Scene_General			"Scene"					<sofa>
+Number Radio_Station			"Radio"					<network>
+Dimmer Volume 					"Volume [%.1f %%]"
+Number Temperature_Setpoint		"Temperature [%.1f °C]" <temperature>
+
+String UnknownDevices    "Unknown Devices in Range: [%s]" { bluetooth="?" }
+Number NoOfPairedDevices "Paired Devices in Range: [%d]"  { bluetooth="!" }
